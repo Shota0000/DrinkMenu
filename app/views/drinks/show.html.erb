@@ -1,0 +1,53 @@
+<div class="album">
+    <div class="container">
+        <%# <p><span class="star5_rating" data-rate="5"></span> 星5</p>
+        <p><span class="star5_rating" data-rate="4.5"></span> 星4.5</p>
+        <p><span class="star5_rating" data-rate="4"></span> 星4</p>
+        <p><span class="star5_rating" data-rate="3.5"></span> 星3.5</p>
+        <p><span class="star5_rating" data-rate="3"></span> 星3</p>
+        <p><span class="star5_rating" data-rate="2.5"></span> 星2.5</p>
+        <p><span class="star5_rating" data-rate="2"></span> 星2</p>
+        <p><span class="star5_rating" data-rate="1.5"></span> 星1.5</p>
+        <p><span class="star5_rating" data-rate="1"></span> 星1</p>
+        <p><span class="star5_rating" data-rate="0.5"></span> 星0.5</p>
+        <p><span class="star5_rating" data-rate="0"></span> 星0</p> %>
+    </div>
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><%= image_tag(@drink.image_id)%></div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder mt-3"><%= @drink.name %></h1>
+                    <div class="fs-5 mb-5">
+                        <p><span class="star5_rating" data-rate="5"></span> 星5</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header">評価フォーム</div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group has-error">
+                            <label class="control-label mt-3">評価</label>
+                            <div class="radio">
+                                <label><input type="radio" name="radio"><span class="text-warning">★</span>1</label>
+                                <label><input type="radio" name="radio"><span class="text-warning">★</span>2</label>
+                                <label><input type="radio" name="radio"><span class="text-warning">★</span>3</label>
+                                <label><input type="radio" name="radio"><span class="text-warning">★</span>4</label>
+                                <label><input type="radio" name="radio"><span class="text-warning">★</span>5</label>
+                                <div class="text-danger">正しく入力して下さい</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">項目1</label>
+                            <input class="form-control" type="text">
+                            <div class="text-danger">正しく入力して下さい</div>
+                        </div>
+
+                        <button class="btn btn btn-secondary">送信</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

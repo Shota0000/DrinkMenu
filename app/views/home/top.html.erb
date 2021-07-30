@@ -1,0 +1,29 @@
+<div class="cover mb-5 d-flex align-items-center justify-content-center">
+    <h1 class="text-white">素敵なドリンクを探す場所</h1>
+</div>
+<div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Starbucks</h4>
+        </div>
+        <div class="star card-body">
+            <%= link_to "Start", drinks_path(shop: "starbucks"), class: 'position-absolute fixed-bottom btn btn-dark btn-lg btn-block btn-primaryrail'%>
+        </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Doutor</h4>
+        </div>
+        <div class="dotor card-body">
+            <%= link_to "Start", drinks_path(shop: "dotor"), class: 'position-absolute fixed-bottom btn btn-dark btn-lg btn-block btn-primaryrail'%>
+        </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Tully's</h4>
+        </div>
+        <div class="tullys card-body">
+            <%= link_to "Start", drinks_path(shop: "tullys"), class: 'position-absolute fixed-bottom btn btn-dark btn-lg btn-block btn-primaryrail'%>
+        </div>
+    </div>
+</div>
