@@ -46,6 +46,7 @@ module StarbucksScrapesConcern
       doc2 = Nokogiri::HTML.parse(html2, nil, charset)
   
       @drinks = []
+      @images = []
 
       doc1.xpath('//span[@class="rt_cf_product_name"]').each do |node|
         @drinks << node.text
@@ -54,8 +55,15 @@ module StarbucksScrapesConcern
       doc2.xpath('//span[@class="rt_cf_product_name"]').each do |node|
         @drinks << node.text
       end
-     
-      return @drinks
+
+      doc1.xpath('//div[@class="dcs-menu-cat-img"]/img').each do |node|
+        @images << "https://www.doutor.co.jp/"+node.attribute('src').value
+      end
+
+      doc2.xpath('//div[@class="dcs-menu-cat-img"]/img').each do |node|
+        @images << "https://www.doutor.co.jp/"+node.attribute('src').value
+      end
+      return @drinks,@images
    end
 
    def set_tullys_shops
@@ -70,11 +78,14 @@ module StarbucksScrapesConcern
     doc = Nokogiri::HTML.parse(html, nil, charset)
 
     @drinks = []
-
+    @images = []
     doc.xpath('//p').each do |node|
       @drinks << node.text
     end
-    return @drinks
+    doc.xpath('//ul/li/a/img').each do |node|
+      @images << "https://www.tullys.co.jp/"+node.attribute('src').value
+    end
+    return @drinks,@images
    end
 
 

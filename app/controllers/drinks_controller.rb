@@ -1,6 +1,8 @@
 class DrinksController < ApplicationController
   include StarbucksScrapesConcern
   before_action :drink_save, only: [:index]
+  before_action :authenticate_user!
+
   def index
    @shop=params[:shop]
    @drinks=Drink.where(shop: @shop)
@@ -8,28 +10,42 @@ class DrinksController < ApplicationController
 
   def show
     @drink=Drink.find(params[:id])
-
+    @review=Review.new
+    @reviews=Review.where(drink_id: @drink)
+    if @reviews.empty?
+      @average=0
+    else
+      @average=Review.where(drink_id: @drink).average(:star).round(2)
+    end
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
-  def create
-  end
+  # def create
+  # end
 
-  def update
-  end
+  # def update
+  # end
 
-  def destroy
+  # def destroy
+  # end
+
+  def search
+    if params[:name].present?
+      @drinks = Drink.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @drinks = Drink.none
+    end
   end
 
   def drink_save
     if params[:shop]=="starbucks"
       @drink_names,@images = set_starbucks_shops
     elsif params[:shop]=="dotor"
-      @drink_names = set_dotor_shops
+      @drink_names,@images= set_dotor_shops
     else
-      @drink_names = set_tullys_shops
+      @drink_names,@images= set_tullys_shops
       @drink_names = @drink_names.drop(1)
     end
     drink_names = []

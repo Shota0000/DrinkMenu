@@ -14,40 +14,105 @@
     </div>
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
+            <%= render 'layouts/errors', obj: @review %>
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><%= image_tag(@drink.image_id)%></div>
+                <div class="col-md-6"><%= image_tag(@drink.image_id, class: "img-fluid")%></div>
                 <div class="col-md-6">
                     <h1 class="display-5 fw-bolder mt-3"><%= @drink.name %></h1>
                     <div class="fs-5 mb-5">
-                        <p><span class="star5_rating" data-rate="5"></span> 星5</p>
+                        <% if @average<1%>
+                        <p><span class="star5_rating" data-rate="0"></span>
+                            <% elsif @average<2%>
+                            <p><span class="star5_rating" data-rate="1"></span>
+                                <% elsif @average<3%>
+                                <p><span class="star5_rating" data-rate="2"></span>
+                                    <% elsif @average<4%>
+                                    <p><span class="star5_rating" data-rate="3"></span>
+                                        <% elsif @average<5%>
+                                        <p><span class="star5_rating" data-rate="4"></span>
+                                            <%else%>
+                                            <p><span class="star5_rating" data-rate="5"></span>
+                                                <%end%>
+                                                <%= @average%>
+                                            </p>
                     </div>
                 </div>
             </div>
             <div class="card mt-3">
                 <div class="card-header">評価フォーム</div>
                 <div class="card-body">
-                    <form>
-                        <div class="form-group has-error">
-                            <label class="control-label mt-3">評価</label>
-                            <div class="radio">
-                                <label><input type="radio" name="radio"><span class="text-warning">★</span>1</label>
-                                <label><input type="radio" name="radio"><span class="text-warning">★</span>2</label>
-                                <label><input type="radio" name="radio"><span class="text-warning">★</span>3</label>
-                                <label><input type="radio" name="radio"><span class="text-warning">★</span>4</label>
-                                <label><input type="radio" name="radio"><span class="text-warning">★</span>5</label>
-                                <div class="text-danger">正しく入力して下さい</div>
-                            </div>
+                    <%= form_with model: [@drink,@review] do |f| %>
+                    <div class="form-group has-error">
+                        <label class="control-label mt-3">評価</label>
+                        <div class="radio">
+                            <label><span class="text-warning">★</span>1</label>
+                            <%= f.radio_button :star,1 %>
+                            <label><span class="text-warning">★</span>2</label>
+                            <%= f.radio_button :star,2 %>
+                            <label><span class="text-warning">★</span>3</label>
+                            <%= f.radio_button :star,3 %>
+                            <label><span class="text-warning">★</span>4</label>
+                            <%= f.radio_button :star,4 %>
+                            <label><span class="text-warning">★</span>5</label>
+                            <%= f.radio_button :star,5 %>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">項目1</label>
-                            <input class="form-control" type="text">
-                            <div class="text-danger">正しく入力して下さい</div>
-                        </div>
-
-                        <button class="btn btn btn-secondary">送信</button>
-                    </form>
+                    </div>
+                    <p>コメント</p>
+                    <%= f.text_area :body, class: 'form-control' %>
+                    <%= f.submit class: 'btn btn btn-secondary mt-3' %>
+                    <% end %>
                 </div>
             </div>
+            <div class="container">
+                <p class="h5 font-weight-normal mt-4">レビュー一覧</p>
+                <div class="row">
+                    <div class="card col-md-3 mt-3" style="height:270px;">
+                        <div class="card-body">
+                            <%= link_to drink_reviews_path(@drink,star: 5),class: "text-dark" do%>
+                            <p><span class="star5_rating mt-2" data-rate="5"></span>
+                                5　　　<%= @reviews.where(star: 5).count%>件
+                            </p>
+                            <% end %>
+                            <%= link_to drink_reviews_path(@drink,star: 4),class: "text-dark" do%>
+                            <p><span class="star5_rating" data-rate="4"></span> 4　　　<%= @reviews.where(star: 4).count%>件
+                            </p>
+                            <% end %>
+                            <%= link_to drink_reviews_path(@drink,star: 3),class: "text-dark" do%>
+                            <p><span class="star5_rating" data-rate="3"></span> 3　　　<%= @reviews.where(star: 3).count%>件
+                            </p>
+                            <% end %>
+                            <%= link_to drink_reviews_path(@drink,star: 2),class: "text-dark" do%>
+                            <p><span class="star5_rating" data-rate="2"></span> 2　　　<%= @reviews.where(star: 2).count%>件
+                            </p>
+                            <% end %>
+                            <%= link_to drink_reviews_path(@drink,star: 1),class: "text-dark" do%>
+                            <p><span class="star5_rating" data-rate="1"></span> 1　　　<%= @reviews.where(star: 1).count%>件
+                            </p>
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="container col-md-9">
+                        <% @reviews.each do |review| %>
+                        <div class="card mt-3">
+                            <div class="card-body border-bottom">
+                                <%= attachment_image_tag review.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-thumb mr-3", fallback: "no_image.jpg",size: "60x60" %>
+                                <%= review.user.name%>さん
+                            </div>
+                            <div class="card-body">
+                                <span class="star5_rating  border" data-rate=<%= review.star%>> </span>
+                                <%= review.created_at.to_s(:datetime_jp)%>
+                                <div class="card-body row">
+                                    <%= review.body%>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-    </section>
+</div>
+</section>
 </div>

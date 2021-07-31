@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :drinks
   has_many :reviews
   attachment :profile_image
+  validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
 end

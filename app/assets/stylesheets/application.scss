@@ -20,10 +20,6 @@
   height: 40px;
 }
 
-.card {
-  height: 380px;
-}
-
 .drink_image {
   height: 225px;
 }
@@ -63,6 +59,11 @@
 .star5_rating[data-rate="0.5"]:after{ width: 10%; } /* 星0.5 */
 .star5_rating[data-rate="0"]:after{ width: 0%; } /* 星0 */
 
+.field_with_errors {
+  display: contents;
+  // もしくは diplay: inline;
+}
+
 
 @media screen and (max-width: 768px) {
   .title {
@@ -71,5 +72,16 @@
   .icon{
     display: inline-block;
     margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .cover{
+    background-image: url(tullys2.jpg);
+    background-size:contain;
+  }
+  .navbar-collapse{
+    border-top: 1px solid gainsboro;
+    margin-top: 10px;
   }
 }

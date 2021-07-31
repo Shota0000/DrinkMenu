@@ -1,0 +1,16 @@
+current directory: /Users/shota/Documents/MyFile/rails/drink_review/vendor/bundle/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
+/Users/shota/.rbenv/versions/2.6.8/bin/ruby -I /Users/shota/.rbenv/versions/2.6.8/lib/ruby/site_ruby/2.6.0 -r ./siteconf20210731-33157-7sqth3.rb extconf.rb
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /Users/shota/Documents/MyFile/rails/drink_review/vendor/bundle/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
+make DESTDIR\= clean
+
+current directory: /Users/shota/Documents/MyFile/rails/drink_review/vendor/bundle/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
+make DESTDIR\=
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+
+current directory: /Users/shota/Documents/MyFile/rails/drink_review/vendor/bundle/ruby/2.6.0/gems/racc-1.5.2/ext/racc/cparse
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20210731-33157-vk5wwi/racc

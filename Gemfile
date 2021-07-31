@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.2'
+ruby '2.6.8'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
@@ -61,6 +61,7 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'activerecord-import'
 gem 'nokogiri'
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'pry-rails'

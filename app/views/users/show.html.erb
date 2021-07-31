@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="text-center mb-4">
+        <%= attachment_image_tag @user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-thumb mt-3 rounded-circle", fallback: "no_image.jpg",size: "150x150" %>
+
+        <p class="h3  font-weight-normal"><%= @user.name%></p>
+        <%= link_to "edit", edit_user_path(current_user),class:"btn btn-secondary",style:"width:20%;" %>
+    </div>
+    <div class="container col-md-9">
+        <p class="h5 font-weight-normal">レビュー一覧</p>
+        <% @reviews.each do |review| %>
+        <div class="card mt-3">
+            <div class="card-body border-bottom">
+                <%= link_to drink_path(review.drink),class: "text-body" do%>
+                <%= review.drink.name%>
+                <%end%>
+            </div>
+            <div class="card-body">
+                <span class="star5_rating  border" data-rate=<%= review.star%>> </span>
+                <%= review.created_at.to_s(:datetime_jp)%>
+                <div class="card-body row">
+                    <%= review.body%>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

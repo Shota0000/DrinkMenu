@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      review:
+        star: 評価
+        body: コメント
+      user:
+        name: 名前
