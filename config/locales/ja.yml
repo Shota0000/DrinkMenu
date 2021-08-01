@@ -1,8 +1,12 @@
 ja:
   activerecord:
+    models:
+      user: ユーザー 
     attributes:
-      review:
+      review: 
         star: 評価
         body: コメント
-      user:
+      user: 
         name: 名前
+        email: メールアドレス
+        password: パスワード

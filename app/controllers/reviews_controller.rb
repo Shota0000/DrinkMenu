@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     @review.drink_id = params[:drink_id]
     if @review.save
-      redirect_to drink_path(@review.drink), notice: "You have created review successfully."
+      redirect_to drink_path(@review.drink), notice: "レビューの投稿が完了しました"
     else
       @reviews=Review.where(drink_id: params[:drink_id])
       @drink=Drink.find(params[:drink_id])

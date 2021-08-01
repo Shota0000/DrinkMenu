@@ -49,7 +49,6 @@ class DrinksController < ApplicationController
       @drink_names = @drink_names.drop(1)
     end
     drink_names = []
-    p @images
     @drink_names.zip(@images) do |drink_name,image|
       drink_names << Drink.new(name: drink_name ,image_id: image,shop: params[:shop])
     end

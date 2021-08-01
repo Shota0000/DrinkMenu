@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="container col-md-9">
-                        <% @reviews.each do |review| %>
+                        <% @reviews.sort.reverse.each do |review| %>
                         <div class="card mt-3">
                             <div class="card-body border-bottom">
                                 <%= attachment_image_tag review.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-thumb mr-3", fallback: "no_image.jpg",size: "60x60" %>
